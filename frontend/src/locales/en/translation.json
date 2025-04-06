@@ -1,0 +1,24 @@
+{
+  "header": {
+    "home": "Home",
+    "books": "Books",
+    "news": "News",
+    "about": "About"
+  },
+  "by": "by",
+  "home": {
+    "booksDescription": "Explore our collection of Persian literature and contemporary books.",
+    "newsDescription": "Stay updated with the latest news in Persian literature and culture."
+  },
+  "about": {
+    "title": "About Sindokht",
+    "description1": "Sindokht is a digital platform dedicated to preserving and promoting Persian literature and culture. Our mission is to make Persian literature accessible to readers worldwide while supporting contemporary authors and cultural initiatives.",
+    "description2": "We provide a curated collection of both classic and contemporary Persian literature, along with news and updates about literary events, new publications, and cultural developments in the Persian-speaking world.",
+    "description3": "Our platform serves as a bridge between traditional Persian literary heritage and modern digital accessibility, ensuring that these valuable cultural resources are preserved and shared with future generations."
+  },
+  "news": {
+    "latestNews": "Latest News",
+    "articleNotFound": "Article not found",
+    "readMore": "Read More"
+  }
+} 
