@@ -1,53 +1,67 @@
-import React from 'react';
-import { Container, Typography, Box, Grid, Card, CardContent, Divider } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  Divider,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
   const { t } = useTranslation();
 
   const objectives = [
     {
-      title: t('objective1'),
-      content: t('objective1Text'),
+      title: t("objective1"),
+      content: t("objective1Text"),
     },
     {
-      title: t('objective2'),
-      content: t('objective2Text'),
-    }
+      title: t("objective2"),
+      content: t("objective2Text"),
+    },
   ];
 
   const activities = [
-    t('research'),
-    t('awareness'),
-    t('education'),
-    t('publication'),
-    t('documentation')
+    t("research"),
+    t("awareness"),
+    t("education"),
+    t("publication"),
+    t("documentation"),
   ];
 
   const workAreas = [
     {
-      title: t('advocacy'),
-      content: t('advocacyText')
+      title: t("advocacy"),
+      content: t("advocacyText"),
     },
     {
-      title: t('training'),
-      content: t('trainingText')
+      title: t("training"),
+      content: t("trainingText"),
     },
     {
-      title: t('justice'),
-      content: t('justiceText')
+      title: t("justice"),
+      content: t("justiceText"),
     },
     {
-      title: t('communities'),
-      content: t('communitiesText')
-    }
+      title: t("communities"),
+      content: t("communitiesText"),
+    },
   ];
 
   return (
     <Container maxWidth="lg">
       <Box sx={{ my: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 6 }}>
-          {t('organizationName')}
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          align="center"
+          sx={{ mb: 6 }}
+        >
+          {t("organizationName")}
         </Typography>
 
         <Grid container spacing={4}>
@@ -56,10 +70,10 @@ const About = () => {
             <Card elevation={3}>
               <CardContent>
                 <Typography variant="h4" gutterBottom color="primary">
-                  {t('vision')}
+                  {t("vision")}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  {t('visionText')}
+                  {t("visionText")}
                 </Typography>
               </CardContent>
             </Card>
@@ -70,7 +84,7 @@ const About = () => {
             <Card elevation={3}>
               <CardContent>
                 <Typography variant="h4" gutterBottom color="primary">
-                  {t('objectives')}
+                  {t("objectives")}
                 </Typography>
                 {objectives.map((objective, index) => (
                   <Box key={index} sx={{ mb: 2 }}>
@@ -88,14 +102,19 @@ const About = () => {
 
           {/* Activities Section */}
           <Grid item xs={12} md={6}>
-            <Card elevation={3} sx={{ height: '100%' }}>
+            <Card elevation={3} sx={{ height: "100%" }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom color="primary">
-                  {t('activities')}
+                  {t("activities")}
                 </Typography>
                 <Box component="ul" sx={{ pl: 2 }}>
                   {activities.map((activity, index) => (
-                    <Typography key={index} component="li" variant="body1" sx={{ mb: 1 }}>
+                    <Typography
+                      key={index}
+                      component="li"
+                      variant="body1"
+                      sx={{ mb: 1 }}
+                    >
                       {activity}
                     </Typography>
                   ))}
@@ -106,10 +125,10 @@ const About = () => {
 
           {/* Work Areas Section */}
           <Grid item xs={12} md={6}>
-            <Card elevation={3} sx={{ height: '100%' }}>
+            <Card elevation={3} sx={{ height: "100%" }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom color="primary">
-                  {t('workAreas')}
+                  {t("workAreas")}
                 </Typography>
                 {workAreas.map((area, index) => (
                   <Box key={index} sx={{ mb: 2 }}>
@@ -131,4 +150,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;
