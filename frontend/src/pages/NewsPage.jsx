@@ -1,7 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Container, Grid, Typography, Box, CircularProgress } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import NewsCard from '../components/News/NewsCard';
+import { useState, useEffect } from "react";
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  CircularProgress,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+import NewsCard from "../components/News/NewsCard";
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -11,12 +17,12 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/news');
+        const response = await fetch("http://localhost:5000/api/news");
         const data = await response.json();
         setNews(data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error("Error fetching news:", error);
         setLoading(false);
       }
     };
@@ -26,7 +32,12 @@ const NewsPage = () => {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="80vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="80vh"
+      >
         <CircularProgress />
       </Box>
     );
@@ -34,8 +45,13 @@ const NewsPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Typography variant="h3" component="h1" gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
-        {t('news.latestNews')}
+      <Typography
+        variant="h3"
+        component="h1"
+        gutterBottom
+        sx={{ mb: 4, fontWeight: "bold" }}
+      >
+        {t("news.latestNews")}
       </Typography>
       <Grid container spacing={4}>
         {news.map((newsItem) => (
@@ -48,4 +64,4 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage; 
+export default NewsPage;
