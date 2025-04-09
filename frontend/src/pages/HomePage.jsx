@@ -1,6 +1,6 @@
-import { Container, Typography, Grid, Paper, Box } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { Container, Typography, Grid, Paper, Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { Link as RouterLink } from "react-router-dom";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -8,14 +8,14 @@ const HomePage = () => {
   return (
     <Container maxWidth="lg">
       <Box sx={{ mt: 4, mb: 8 }}>
-        <Typography 
-          variant="h2" 
-          component="h1" 
-          gutterBottom 
-          sx={{ 
-            fontWeight: 'bold',
-            textAlign: 'center',
-            mb: 4
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            mb: 4,
           }}
         >
           Sindokht
@@ -29,20 +29,23 @@ const HomePage = () => {
               to="/books"
               sx={{
                 p: 4,
-                height: '100%',
-                textDecoration: 'none',
-                display: 'block',
-                transition: 'transform 0.2s',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                }
+                height: "100%",
+                textDecoration: "none",
+                display: "block",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                },
               }}
             >
               <Typography variant="h4" gutterBottom>
-                {t('header.books')}
+                {t("header.books")}
               </Typography>
               <Typography color="text.secondary">
-                {t('home.booksDescription', 'Explore our collection of Persian literature and contemporary books.')}
+                {t(
+                  "home.booksDescription",
+                  "Explore our collection of Persian literature and contemporary books."
+                )}
               </Typography>
             </Paper>
           </Grid>
@@ -54,20 +57,23 @@ const HomePage = () => {
               to="/news"
               sx={{
                 p: 4,
-                height: '100%',
-                textDecoration: 'none',
-                display: 'block',
-                transition: 'transform 0.2s',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                }
+                height: "100%",
+                textDecoration: "none",
+                display: "block",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                },
               }}
             >
               <Typography variant="h4" gutterBottom>
-                {t('header.news')}
+                {t("header.news")}
               </Typography>
               <Typography color="text.secondary">
-                {t('home.newsDescription', 'Stay updated with the latest news in Persian literature and culture.')}
+                {t(
+                  "home.newsDescription",
+                  "Stay updated with the latest news in Persian literature and culture."
+                )}
               </Typography>
             </Paper>
           </Grid>
@@ -77,4 +83,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage; 
+export default HomePage;
