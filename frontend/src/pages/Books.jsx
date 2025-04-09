@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -13,10 +13,10 @@ import {
   TextField,
   InputAdornment,
   IconButton,
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
-import InfiniteScroll from 'react-infinite-scroll-component';
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Books = () => {
   const { t, i18n } = useTranslation();
@@ -25,7 +25,7 @@ const Books = () => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const currentLang = i18n.language;
 
@@ -36,7 +36,7 @@ const Books = () => {
         `http://localhost:5000/api/books?page=${currentPage}&limit=12&search=${search}&lang=${currentLang}`
       );
       const data = await response.json();
-      
+
       if (data.books.length === 0 && currentPage === 0) {
         setBooks([]);
         setHasMore(false);
@@ -46,12 +46,12 @@ const Books = () => {
       if (currentPage === 0) {
         setBooks(data.books);
       } else {
-        setBooks(prevBooks => [...prevBooks, ...data.books]);
+        setBooks((prevBooks) => [...prevBooks, ...data.books]);
       }
-      
+
       setHasMore(data.hasMore);
     } catch (error) {
-      console.error('Error fetching books:', error);
+      console.error("Error fetching books:", error);
     } finally {
       setLoading(false);
     }
@@ -91,12 +91,19 @@ const Books = () => {
   };
 
   const handleClearSearch = () => {
-    setSearch('');
+    setSearch("");
   };
 
   if (loading && page === 0) {
     return (
-      <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "60vh",
+        }}
+      >
         <CircularProgress />
       </Container>
     );
@@ -105,14 +112,14 @@ const Books = () => {
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4 }}>
-        {t('books')}
+        {t("books")}
       </Typography>
 
-      <Box sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}>
+      <Box sx={{ mb: 4, maxWidth: 600, mx: "auto" }}>
         <TextField
           fullWidth
           variant="outlined"
-          placeholder={t('searchBooks')}
+          placeholder={t("searchBooks")}
           value={search}
           onChange={handleSearchChange}
           InputProps={{
@@ -131,24 +138,24 @@ const Books = () => {
           }}
         />
       </Box>
-      
+
       {books.length === 0 && !loading ? (
         <Typography align="center" color="text.secondary" sx={{ mt: 4 }}>
-          {t('noBooksFound')}
+          {t("noBooksFound")}
         </Typography>
       ) : (
         <InfiniteScroll
           dataLength={books.length}
-          next={() => setPage(prevPage => prevPage + 1)}
+          next={() => setPage((prevPage) => prevPage + 1)}
           hasMore={hasMore}
           loader={
-            <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
               <CircularProgress />
             </Box>
           }
           endMessage={
             <Typography align="center" sx={{ my: 2 }}>
-              {t('noMoreBooks')}
+              {t("noMoreBooks")}
             </Typography>
           }
         >
@@ -157,13 +164,13 @@ const Books = () => {
               <Grid item xs={12} sm={6} md={4} lg={3} key={book._id}>
                 <Card
                   sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s',
-                    '&:hover': {
-                      transform: 'scale(1.02)',
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    cursor: "pointer",
+                    transition: "transform 0.2s",
+                    "&:hover": {
+                      transform: "scale(1.02)",
                     },
                   }}
                   onClick={() => handleBookClick(book._id)}
@@ -173,16 +180,25 @@ const Books = () => {
                     height="300"
                     image={book.imageUrl}
                     alt={book.title[currentLang]}
-                    sx={{ objectFit: 'cover' }}
+                    sx={{ objectFit: "cover" }}
                   />
                   <CardContent>
-                    <Typography gutterBottom variant="h6" component="div" noWrap>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="div"
+                      noWrap
+                    >
                       {book.title[currentLang]}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" noWrap>
                       {book.author[currentLang]}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mt: 1 }}
+                    >
                       {book.category[currentLang]}
                     </Typography>
                   </CardContent>
@@ -196,4 +212,4 @@ const Books = () => {
   );
 };
 
-export default Books; 
+export default Books;
