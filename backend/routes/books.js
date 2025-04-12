@@ -64,8 +64,8 @@ router.get('/:id/download', async (req, res) => {
     }
 
     // Get the file path from the book's downloadUrl
-    const filePath = path.join(__dirname, '..', 'uploads', 'books', path.basename(book.downloadUrl));
-
+    const filePath = path.join(__dirname, '..', 'uploads', 'books', path.basename(book._id + '.pdf'));
+console.log(filePath);
     // Check if file exists
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ message: 'Book file not found' });
