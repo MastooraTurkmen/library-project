@@ -63,17 +63,47 @@ router.get('/:id/download', async (req, res) => {
       return res.status(404).json({ message: 'Book not found' });
     }
 
-    // Get the file path from the book's downloadUrl
-    const filePath = path.join(__dirname, '..', 'uploads', 'books', path.basename(book._id + '.pdf'));
-console.log(filePath);
+    // Get the file path using the book's title
+    const fileName = `${book.title.en}.pdf`;
+    const filePath = path.join(__dirname, '..', 'uploads', 'books', fileName);
+
     // Check if file exists
-    if (!fs.existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) { 
       return res.status(404).json({ message: 'Book file not found' });
     }
 
     // Set headers for file download
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${path.basename(book.downloadUrl)}"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+
+    // Stream the file
+    const fileStream = fs.createReadStream(filePath);
+    fileStream.pipe(res);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Read a book
+router.get('/:id/read', async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // Get the file path using the book's title
+    const fileName = `${book.title.en}.pdf`;
+    const filePath = path.join(__dirname, '..', 'uploads', 'books', fileName);
+
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ message: 'Book file not found' });
+    }
+
+    // Set headers for PDF viewing
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);
 
     // Stream the file
     const fileStream = fs.createReadStream(filePath);
