@@ -46,6 +46,7 @@ const BookDetail = () => {
         setBook(data);
       } catch (error) {
         console.error("Error fetching book:", error);
+        setError("Error loading book details");
         setSnackbarMessage("Error loading book details");
         setSnackbarOpen(true);
       } finally {
@@ -61,6 +62,11 @@ const BookDetail = () => {
   };
 
   const handleReadBook = () => {
+    if (!book?.readUrl) {
+      setSnackbarMessage("PDF file not available");
+      setSnackbarOpen(true);
+      return;
+    }
     setReadDialogOpen(true);
   };
 
@@ -69,11 +75,15 @@ const BookDetail = () => {
   };
 
   const handleDownload = async () => {
+    if (!book?.downloadUrl) {
+      setSnackbarMessage("PDF file not available");
+      setSnackbarOpen(true);
+      return;
+    }
+
     setDownloading(true);
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/books/${id}/download`
-      );
+      const response = await fetch(`http://localhost:5000/api/books/${id}/download`);
       if (!response.ok) throw new Error("Download failed");
 
       const blob = await response.blob();
@@ -212,6 +222,7 @@ const BookDetail = () => {
                 startIcon={<MenuBookIcon />}
                 onClick={handleReadBook}
                 size="large"
+                disabled={!book.readUrl}
               >
                 {t("readBook")}
               </Button>
@@ -220,7 +231,7 @@ const BookDetail = () => {
                 color="primary"
                 startIcon={<DownloadIcon />}
                 onClick={handleDownload}
-                disabled={downloading}
+                disabled={downloading || !book.downloadUrl}
                 size="large"
               >
                 {downloading ? t("downloadingBook") : t("downloadBook")}
@@ -246,12 +257,15 @@ const BookDetail = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent dividers>
-          {/* Here you would embed your PDF viewer or book content */}
-          <iframe
-            src={book.readUrl}
-            style={{ width: "100%", height: "100%", border: "none" }}
-            title={book.title[currentLang]}
-          />
+          {book.readUrl && (
+            <iframe
+              src={`http://localhost:5000/api/books/${id}/read`}
+              width="100%"
+              height="100%"
+              style={{ border: 'none' }}
+              title={book.title[currentLang]}
+            />
+          )}
         </DialogContent>
       </Dialog>
 
