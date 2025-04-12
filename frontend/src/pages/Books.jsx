@@ -182,24 +182,54 @@ const Books = () => {
                     alt={book.title[currentLang]}
                     sx={{ objectFit: "cover" }}
                   />
-                  <CardContent>
+                  <CardContent sx={{ flexGrow: 1 }}>
                     <Typography
                       gutterBottom
                       variant="h6"
                       component="div"
-                      noWrap
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                        minHeight: "3em"
+                      }}
                     >
                       {book.title[currentLang]}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" noWrap>
-                      {book.author[currentLang]}
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: "vertical"
+                      }}
+                    >
+                      {t("author")}: {book.author[currentLang]}
                     </Typography>
-                    <Typography
-                      variant="body2"
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: "vertical"
+                      }}
+                    >
+                      {t("category")}: {book.category[currentLang]}
+                    </Typography>
+                    <Typography 
+                      variant="body2" 
                       color="text.secondary"
                       sx={{ mt: 1 }}
                     >
-                      {book.category[currentLang]}
+                      {t("publishYear")}: {book.publishYear}
                     </Typography>
                   </CardContent>
                 </Card>
