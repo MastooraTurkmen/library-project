@@ -178,7 +178,7 @@ const Books = () => {
                   <CardMedia
                     component="img"
                     height="300"
-                    image={book.imageUrl}
+                    image={`http://localhost:5000${book.imageUrl}`}
                     alt={book.title[currentLang]}
                     sx={{ objectFit: "cover" }}
                   />

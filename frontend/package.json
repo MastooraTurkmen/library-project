@@ -1,37 +1,42 @@
 {
-  "name": "sindokht",
+  "name": "sindokht-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "predev": "node scripts/copy-worker.js"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@fontsource/vazirmatn": "^5.2.5",
-    "@mui/icons-material": "^7.0.1",
-    "@mui/material": "^7.0.1",
-    "i18next": "^24.2.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1",
+    "@mui/icons-material": "^5.15.6",
+    "@mui/material": "^5.15.6",
+    "axios": "^1.6.7",
+    "i18next": "^23.8.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
     "react-infinite-scroll-component": "^6.1.0",
-    "react-router-dom": "^7.5.0",
-    "stylis-plugin-rtl": "^2.1.1"
+    "react-pdf": "^7.2.2",
+    "react-router-dom": "^6.22.0",
+    "stylis-plugin-rtl": "^2.1.1",
+    "pdfjs-dist": "^4.0.379"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "globals": "^15.15.0",
-    "vite": "^6.2.0"
+    "vite": "^5.1.0"
   }
 }

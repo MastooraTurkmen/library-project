@@ -162,7 +162,7 @@ const BookDetail = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <img
-              src={book.imageUrl}
+              src={`http://localhost:5000${book.imageUrl}`}
               alt={book.title[currentLang]}
               style={{
                 width: "100%",
